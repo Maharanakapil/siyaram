@@ -9,7 +9,7 @@ pr:
      - ram
 pool: siyaram
 stages:
-  - stage: init & plan
+  - stage: init_plan
     displayName: init and plan_s
     jobs:
       - job: job_init
