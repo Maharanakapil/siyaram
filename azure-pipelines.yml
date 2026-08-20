@@ -1,0 +1,33 @@
+name: test_pipeline
+trigger:
+ branches:
+   include:
+     - ram
+pr:
+ branches:
+   include:
+     - ram
+pool: siyaram
+stages:
+  - stage: init_plan
+    displayName: init and plan_s
+    jobs:
+      - job: job_init
+        displayName: init_j
+        steps:
+        - task: TerraformTask@5
+          displayName: tast_init
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            backendServiceArm: 'siyaram'
+            backendAzureRmResourceGroupName: 'krrg'
+            backendAzureRmStorageAccountName: 'krst'
+            backendAzureRmContainerName: 'krcon'
+            backendAzureRmKey: 'siyaram.tfstate'
+        - task: TerraformTask@5
+          displayName: task_plan
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            environmentServiceNameAzureRM: 'siyaram'
