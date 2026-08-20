@@ -9,7 +9,7 @@ pr:
      - ram
 pool: siyaram
 stages:
-  - stage: init & plan
+  - stage: init_plan
     displayName: init and plan_s
     jobs:
       - job: job_init
@@ -25,8 +25,6 @@ stages:
             backendAzureRmStorageAccountName: 'krst'
             backendAzureRmContainerName: 'krcon'
             backendAzureRmKey: 'siyaram.tfstate'
-      - job: job_plan
-        steps:
         - task: TerraformTask@5
           displayName: task_plan
           inputs:
